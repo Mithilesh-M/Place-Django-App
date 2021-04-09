@@ -7,7 +7,7 @@
   <ul>
     {% for place in city.place_set.all %}
       <li>
-        <a href="">{{ place.title }}</a>
+        <a href="{{ place.get_absolute_url }}">{{ place.title }}</a>
       </li>
     {% endfor %}
   </ul>

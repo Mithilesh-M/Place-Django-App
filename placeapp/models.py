@@ -29,11 +29,14 @@ class Place(models.Model):
         default='m',
         help_text='Place Type',
     )
-    address = models.CharField(max_length=250, help_text='Enter a place address')
 
     def __str__(self):
         """String for representing the Model object."""
         return self.title
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular place instance."""
+        return reverse('place-detail', args=[str(self.id)])
 
 
 class City(models.Model):

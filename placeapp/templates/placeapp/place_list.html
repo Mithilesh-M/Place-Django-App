@@ -6,7 +6,7 @@
   <ul>
     {% for place in place_list %}
       <li>
-        <a href="">{{ place.name }}</a>
+        <a href="{{ place.get_absolute_url }}">{{ place.title }}</a>
       </li>
     {% endfor %}
   </ul>
