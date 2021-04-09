@@ -52,10 +52,8 @@ def CreateCity(request):
             city = City(name=form.cleaned_data['name'])
             city.save()
 
-            # redirect to a new URL:
             return HttpResponseRedirect(reverse('cities') )
 
-    # If this is a GET (or any other method) create the default form.
     else:
         form = CreateCityForm()
 
@@ -66,7 +64,7 @@ def CreateCity(request):
     return render(request, 'placeapp/create_city.html', context)
 
 def CreatePlace(request):
-    """View function for Creating city."""
+    """View function for Creating Place."""
 
     if request.method == 'POST':
 
@@ -76,10 +74,8 @@ def CreatePlace(request):
             place = Place(title=form.cleaned_data['title'],description=form.cleaned_data['description'],address=form.cleaned_data['address'],phone=form.cleaned_data['phone'],city=form.cleaned_data['city'],type_of_place=form.cleaned_data['type_of_place'],)
             place.save()
 
-            # redirect to a new URL:
             return HttpResponseRedirect(reverse('places'))
 
-    # If this is a GET (or any other method) create the default form.
     else:
         form = CreatePlaceForm()
 
@@ -88,3 +84,18 @@ def CreatePlace(request):
     }
 
     return render(request, 'placeapp/create_place.html', context)
+
+def PlaceDelete(request, pk):
+    """View function for renewing a specific BookInstance by librarian."""
+    place = get_object_or_404(Place, pk=pk)
+
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+        place.delete()
+        return HttpResponseRedirect(reverse('places'))
+
+    context = {
+        'place': place,
+    }
+
+    return render(request, 'placeapp/delete_place.html', context)
