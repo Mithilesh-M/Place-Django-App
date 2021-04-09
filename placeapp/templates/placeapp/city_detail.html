@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>City name : {{ city.name }}</h1>
+    <h3>Places : </h3>
+  {% if city.place_set.all %}
+  <ul>
+    {% for place in city.place_set.all %}
+      <li>
+        <a href="">{{ place.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no places added in this {{ city.name }} city.</p>
+  {% endif %}
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.gis.db import models as geomodels
-
+from django.urls import reverse
 
 
 class Place(models.Model):
@@ -43,6 +43,11 @@ class City(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.name
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular city instance."""
+        return reverse('city-detail', args=[str(self.id)])
+
 
 class Location(geomodels.Model):
     """Model representing a location."""

@@ -25,3 +25,8 @@ class CityListView(generic.ListView):
 class PlaceListView(generic.ListView):
     model = Place
     paginate_by = 10
+
+
+class CityDetailView(generic.DetailView):
+    model = City
+    paginate_by = 10
