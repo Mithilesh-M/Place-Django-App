@@ -38,3 +38,10 @@ class CreatePlaceForm(forms.Form):
     def clean_renewal_date(self):
         data = self.cleaned_data['name']
         return data
+
+class UpdateCityForm(forms.Form):
+    name = forms.CharField(max_length=100, help_text="Enter the name of the city")
+
+    def clean_renewal_date(self):
+        data = self.cleaned_data['name']
+        return data

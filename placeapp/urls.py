@@ -11,4 +11,5 @@ urlpatterns = [
     path('place/create/', views.CreatePlace, name='create-place'),
     path('place/<int:pk>/delete', views.PlaceDelete, name='place-delete'),
     path('city/<int:pk>/delete', views.CityDelete, name='city-delete'),
+    path('city/<int:pk>/update', views.CityUpdate, name='city-update'),
 ]

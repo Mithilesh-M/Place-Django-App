@@ -4,7 +4,7 @@ from django.views import generic
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import CreateCityForm, CreatePlaceForm
+from .forms import CreateCityForm, CreatePlaceForm, UpdateCityForm
 
 
 def index(request):
@@ -114,3 +114,27 @@ def CityDelete(request, pk):
     }
 
     return render(request, 'placeapp/delete_city.html', context)
+
+def CityUpdate(request, pk):
+    """View function for updating city."""
+    city = get_object_or_404(City, pk=pk)
+
+    if request.method == 'POST':
+
+        form = UpdateCityForm(request.POST)
+
+        if form.is_valid():
+            city.name = form.cleaned_data['name']
+            city.save()
+            return HttpResponseRedirect(reverse('cities'))
+
+    else:
+        city_original_name = city.name
+        form = UpdateCityForm(initial={'name': city_original_name})
+
+    context = {
+        'form': form,
+        'city': city,
+    }
+
+    return render(request, 'placeapp/update_city.html', context)
