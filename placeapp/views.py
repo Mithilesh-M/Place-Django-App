@@ -86,7 +86,7 @@ def CreatePlace(request):
     return render(request, 'placeapp/create_place.html', context)
 
 def PlaceDelete(request, pk):
-    """View function for renewing a specific BookInstance by librarian."""
+    """View function for deleting the place."""
     place = get_object_or_404(Place, pk=pk)
 
     # If this is a POST request then process the Form data
@@ -99,3 +99,18 @@ def PlaceDelete(request, pk):
     }
 
     return render(request, 'placeapp/delete_place.html', context)
+
+def CityDelete(request, pk):
+    """View function for deleting the city."""
+    city = get_object_or_404(City, pk=pk)
+
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+        city.delete()
+        return HttpResponseRedirect(reverse('places'))
+
+    context = {
+        'city': city,
+    }
+
+    return render(request, 'placeapp/delete_city.html', context)
