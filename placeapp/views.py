@@ -4,7 +4,7 @@ from django.views import generic
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import CreateCityForm
+from .forms import CreateCityForm, CreatePlaceForm
 
 
 def index(request):
@@ -65,3 +65,26 @@ def CreateCity(request):
 
     return render(request, 'placeapp/create_city.html', context)
 
+def CreatePlace(request):
+    """View function for Creating city."""
+
+    if request.method == 'POST':
+
+        form = CreatePlaceForm(request.POST)
+
+        if form.is_valid():
+            place = Place(title=form.cleaned_data['title'],description=form.cleaned_data['description'],address=form.cleaned_data['address'],phone=form.cleaned_data['phone'],city=form.cleaned_data['city'],type_of_place=form.cleaned_data['type_of_place'],)
+            place.save()
+
+            # redirect to a new URL:
+            return HttpResponseRedirect(reverse('places'))
+
+    # If this is a GET (or any other method) create the default form.
+    else:
+        form = CreatePlaceForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'placeapp/create_place.html', context)
