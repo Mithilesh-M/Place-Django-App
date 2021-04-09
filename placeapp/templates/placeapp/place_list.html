@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Place List</h1>
+  {% if place_list %}
+  <ul>
+    {% for place in place_list %}
+      <li>
+        <a href="">{{ place.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no place created in this app.</p>
+  {% endif %}
+{% endblock %}
