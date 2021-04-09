@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>City List</h1>
+  {% if city_list %}
+  <ul>
+    {% for city in city_list %}
+      <li>
+        <a href="">{{ city.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no city created in this app.</p>
+  {% endif %}
+{% endblock %}

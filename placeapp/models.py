@@ -38,7 +38,7 @@ class Place(models.Model):
 
 class City(models.Model):
     """Model representing a city."""
-    name = models.CharField(max_length=100, help_text='Enter a city name',null=False, blank=False)
+    name = models.CharField(max_length=100, help_text='Enter a city name', null=False, blank=False)
 
     def __str__(self):
         """String for representing the Model object."""
