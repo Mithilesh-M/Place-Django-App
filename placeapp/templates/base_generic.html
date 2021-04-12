@@ -10,9 +10,10 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-  <div class="container-fluid">
+  <h1 class="title">Place Application</h1>
+  <div class="container-fluid mypage">
     <div class="row">
-      <div class="col-sm-2">
+      <div class="mysidebar col-sm-2">
       {% block sidebar %}
         <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
