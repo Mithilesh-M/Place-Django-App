@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import CreateCityForm, CreatePlaceForm, UpdateCityForm, UpdatePlaceForm
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 def index(request):
@@ -41,6 +42,8 @@ class PlaceDetailView(generic.DetailView):
     paginate_by = 10
 
 
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def CreateCity(request):
     """View function for Creating city."""
 
@@ -63,6 +66,9 @@ def CreateCity(request):
 
     return render(request, 'placeapp/create_city.html', context)
 
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def CreatePlace(request):
     """View function for Creating Place."""
 
@@ -85,6 +91,9 @@ def CreatePlace(request):
 
     return render(request, 'placeapp/create_place.html', context)
 
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def PlaceDelete(request, pk):
     """View function for deleting the place."""
     place = get_object_or_404(Place, pk=pk)
@@ -100,6 +109,9 @@ def PlaceDelete(request, pk):
 
     return render(request, 'placeapp/delete_place.html', context)
 
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def CityDelete(request, pk):
     """View function for deleting the city."""
     city = get_object_or_404(City, pk=pk)
@@ -115,6 +127,9 @@ def CityDelete(request, pk):
 
     return render(request, 'placeapp/delete_city.html', context)
 
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def CityUpdate(request, pk):
     """View function for updating city."""
     city = get_object_or_404(City, pk=pk)
@@ -139,6 +154,9 @@ def CityUpdate(request, pk):
 
     return render(request, 'placeapp/update_city.html', context)
 
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def PlaceUpdate(request, pk):
     """View function for updating Place."""
     place = get_object_or_404(Place, pk=pk)
