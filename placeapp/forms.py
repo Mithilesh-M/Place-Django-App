@@ -6,12 +6,10 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from .models import Location, Place, City
 
+
 class CreateCityForm(forms.Form):
     name = forms.CharField(max_length=100, help_text="Enter the name of the city")
 
-    def clean_renewal_date(self):
-        data = self.cleaned_data['name']
-        return data
 
 class CreatePlaceForm(forms.Form):
     title = forms.CharField(max_length=100, help_text='Enter a place name')
@@ -35,10 +33,6 @@ class CreatePlaceForm(forms.Form):
         choices=PLACE_TYPE,
         help_text='Place Type',
     )
-
-    def clean_renewal_date(self):
-        data = self.cleaned_data['name']
-        return data
 
 
 class UpdateCityForm(forms.Form):
@@ -70,7 +64,3 @@ class UpdatePlaceForm(forms.Form):
         choices=PLACE_TYPE,
         help_text='Place Type',
     )
-
-    def clean_renewal_date(self):
-        data = self.cleaned_data['name']
-        return data
