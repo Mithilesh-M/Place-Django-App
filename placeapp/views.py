@@ -149,6 +149,11 @@ def PlaceUpdate(request, pk):
 
         if form.is_valid():
             place.title = form.cleaned_data['title']
+            place.description = form.cleaned_data['description']
+            place.address = form.cleaned_data['address']
+            place.phone = form.cleaned_data['phone']
+            place.city = form.cleaned_data['city']
+            place.type_of_place = form.cleaned_data['type_of_place']
             place.save()
             return HttpResponseRedirect(reverse('places'))
 
