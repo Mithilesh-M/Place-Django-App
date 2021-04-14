@@ -77,7 +77,9 @@ def CreatePlace(request):
         form = CreatePlaceForm(request.POST)
 
         if form.is_valid():
-            place = Place(title=form.cleaned_data['title'],description=form.cleaned_data['description'],address=form.cleaned_data['address'],phone=form.cleaned_data['phone'],city=form.cleaned_data['city'],type_of_place=form.cleaned_data['type_of_place'],)
+            location = Location(name=form.cleaned_data['title'],point=form.cleaned_data['location'])
+            location.save()
+            place = Place(title=form.cleaned_data['title'],description=form.cleaned_data['description'],address=form.cleaned_data['address'],phone=form.cleaned_data['phone'],city=form.cleaned_data['city'],type_of_place=form.cleaned_data['type_of_place'],location=location)
             place.save()
 
             return HttpResponseRedirect(reverse('places'))

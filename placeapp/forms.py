@@ -13,7 +13,7 @@ class CreateCityForm(forms.Form):
 
 class CreatePlaceForm(forms.Form):
     title = forms.CharField(max_length=100, help_text='Enter a place name')
-    #location = forms.PointField(widget=forms.OSMWidget(attrs={'map_width': 800, 'map_height': 500}))
+    location = forms.PointField(widget=forms.OSMWidget(attrs={'map_width': 800, 'map_height': 500}))
     description = forms.CharField(max_length=500, help_text='Enter a place description')
     address = forms.CharField(max_length=250, help_text='Enter a place address')
     phone = forms.CharField(max_length=10, help_text='Enter a phone number')
